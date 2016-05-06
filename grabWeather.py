@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python
 
 from pyquery import *
 from time import strftime
@@ -30,17 +30,11 @@ def getNextHighTide():
 	h1Hours = ( ( int(h1Hours) + 12 ) , (h1Hours) )[h1AMPM == "am"]
 	h2Hours = ( ( int(h2Hours) + 12 ) , (h2Hours) )[h2AMPM == "am"]
 
-	#print( "Current Time = " + cTHours + ":"  + cTMinutes )
-	#print( "H1-Time = " + h1Hours + ":"  + h1Minutes + " " + h1AMPM )
-	#print( "H2-Time = " + h2Hours + ":"  + h2Minutes + " " + h2AMPM )
+	#print( "Current Time = " + str(cTHours) + ":"  + str(cTMinutes) )
+	#print( "H1-Time = " + str(h1Hours) + ":"  + str(h1Minutes) + " " + str(h1AMPM) )
+	#print( "H2-Time = " + str(h2Hours) + ":"  + str(h2Minutes) + " " + str(h2AMPM) )
 
 
-	#if ( cTHours > h1Hours ) :
-	hoursLeft = h2Hours - cTHours
-	x =  h2Minutes + ( 60 - h2Minutes )
-	hoursLeft = str(hoursLeft)
-	x = str(x)
-	print("next high tide = " + hoursLeft + ":" + x )
 
 
 d = PyQuery( url='http://tides.willyweather.com/wa/mason-county/lilliwaup.html' )
@@ -69,9 +63,9 @@ high2Time		= high2TideWrap[0].text
 high2Height 	= high2TideWrap[1].text
 
 
-getNextHighTide()
+#getNextHighTide()
 
-'''
+
 print(low1)
 print("------------")
 print(low1Time)
@@ -97,5 +91,5 @@ print(high2)
 print("------------")
 print(high2Time)
 print(high2Height)
-'''
+
 
