@@ -221,12 +221,7 @@ def getToday():
 	print( "Next High Tide in : " + str(highTimeDifference) )
 	print( "Next Low Tide in : " + str(lowTimeDifference) )
 
-	return tomorrowHigh , tomorrowLow
+	return highTimeDifference , lowTimeDifference
 
 
 
-
-#a1 , b1 = getToday()
-
-#print(a1)
-#print(b1)

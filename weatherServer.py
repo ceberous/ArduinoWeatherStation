@@ -11,6 +11,7 @@ def updateTide():
 	print(b1)
 
 
+updateTide()
 
 '''
 try:
