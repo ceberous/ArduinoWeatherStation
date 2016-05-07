@@ -53,26 +53,26 @@ def getTomorrow():
 
 
 	h1 			= h1Time.split(":")
-	h1Hours 	= int( h1[0] )
-	h1Minutes 	= h1[1]
+	h1Hours 	= 0 if h1[0] == "-" else int(h1[0])
+	h1Minutes 	= "00am" if h1Hours == 0 else h1[1]
 	h1AMPM		= h1Minutes[-2] + h1Minutes[-1]
 	h1Minutes 	= int( h1Minutes[:-2] )
 
 	h2 			= h2Time.split(":")
-	h2Hours		= int( h2[0] )
-	h2Minutes	= h2[1]
+	h2Hours		= 0 if h2[0] == "-" else int(h2[0])
+	h2Minutes	= "00am" if h2Hours == 0 else h2[1]
 	h2AMPM		= h2Minutes[-2] + h2Minutes[-1]
 	h2Minutes	= int( h2Minutes[:-2] )
 
 	l1 			= l1Time.split(":")
-	l1Hours		= int( l1[0] )
-	l1Minutes	= l1[1]
+	l1Hours		= 0 if l1[0] == "-" else int(l1[0])
+	l1Minutes	= "00am" if l1Hours == 0 else l1[1]
 	l1AMPM		= l1Minutes[-2] + l1Minutes[-1]
 	l1Minutes 	= int( l1Minutes[:-2] )
 
 	l2			= l2Time.split(":")
-	l2Hours		= int( l2[0] )
-	l2Minutes	= l2[1]
+	l2Hours		= 0 if l2[0] == "-" else int(l2[0])
+	l2Minutes	= "00am" if l2Hours == 0 else l2[1]
 	l2AMPM		= l2Minutes[-2] + l2Minutes[-1]
 	l2Minutes	= int( l2Minutes[:-2] )
 
@@ -106,6 +106,8 @@ def getTomorrow():
 
 def getToday():
 
+	getTomorrow()
+
 	global tomorrowHigh
 	global tomorrowLow
 
@@ -138,29 +140,28 @@ def getToday():
 
 
 	h1 			= h1Time.split(":")
-	h1Hours 	= int( h1[0] )
-	h1Minutes 	= h1[1]
+	h1Hours 	= 0 if h1[0] == "-" else int(h1[0])
+	h1Minutes 	= "00am" if h1Hours == 0 else h1[1]
 	h1AMPM		= h1Minutes[-2] + h1Minutes[-1]
 	h1Minutes 	= int( h1Minutes[:-2] )
 
 	h2 			= h2Time.split(":")
-	h2Hours		= int( h2[0] )
-	h2Minutes	= h2[1]
+	h2Hours		= 0 if h2[0] == "-" else int(h2[0])
+	h2Minutes	= "00am" if h2Hours == 0 else h2[1]
 	h2AMPM		= h2Minutes[-2] + h2Minutes[-1]
 	h2Minutes	= int( h2Minutes[:-2] )
 
 	l1 			= l1Time.split(":")
-	l1Hours		= int( l1[0] )
-	l1Minutes	= l1[1]
+	l1Hours		= 0 if l1[0] == "-" else int(l1[0])
+	l1Minutes	= "00am" if l1Hours == 0 else l1[1]
 	l1AMPM		= l1Minutes[-2] + l1Minutes[-1]
 	l1Minutes 	= int( l1Minutes[:-2] )
 
 	l2			= l2Time.split(":")
-	l2Hours		= int( l2[0] )
-	l2Minutes	= l2[1]
+	l2Hours		= 0 if l2[0] == "-" else int(l2[0])
+	l2Minutes	= "00am" if l2Hours == 0 else l2[1]
 	l2AMPM		= l2Minutes[-2] + l2Minutes[-1]
 	l2Minutes	= int( l2Minutes[:-2] )
-
 
 	# 24 Hour Conversion
 	h1Hours = ( ( h1Hours + 12 ) , (h1Hours) )[h1AMPM == "am"]
@@ -188,7 +189,6 @@ def getToday():
 	nextHighTime = ""
 	highTimeDifference = ""
 	if cTHours > h1Hours and cTHours > h2Hours:
-		getTomorrow()
 		nextHighTime = str(tomorrowHigh)
 		highTimeDifference = datetime.strptime( nextHighTime , FMT ) - datetime.strptime( cTCache , FMT )
 	elif cTHours > h1Hours and cTHours <= h2Hours:
@@ -205,7 +205,6 @@ def getToday():
 	nextLowTime = ""
 	lowTimeDifference = ""
 	if cTHours > l1Hours and cTHours > l2Hours:
-		getTomorrow()
 		nextLowTime = str(tomorrowLow)
 		lowTimeDifference = datetime.strptime( nextLowTime , FMT ) - datetime.strptime( cTCache , FMT )
 	elif cTHours > l1Hours and cTHours <= l2Hours:
