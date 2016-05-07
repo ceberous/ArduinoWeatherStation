@@ -3,6 +3,7 @@
 from pyquery import *
 from time import strftime
 from datetime import datetime
+from array import array
 import time
 
 FMT = '%H:%M'
@@ -105,6 +106,9 @@ def getTomorrow():
 
 def getToday():
 
+	global tomorrowHigh
+	global tomorrowLow
+
 	y = x[0].getchildren()
 
 	first			= y[0].text
@@ -184,6 +188,7 @@ def getToday():
 	nextHighTime = ""
 	highTimeDifference = ""
 	if cTHours > h1Hours and cTHours > h2Hours:
+		getTomorrow()
 		nextHighTime = str(tomorrowHigh)
 		highTimeDifference = datetime.strptime( nextHighTime , FMT ) - datetime.strptime( cTCache , FMT )
 	elif cTHours > h1Hours and cTHours <= h2Hours:
@@ -200,6 +205,7 @@ def getToday():
 	nextLowTime = ""
 	lowTimeDifference = ""
 	if cTHours > l1Hours and cTHours > l2Hours:
+		getTomorrow()
 		nextLowTime = str(tomorrowLow)
 		lowTimeDifference = datetime.strptime( nextLowTime , FMT ) - datetime.strptime( cTCache , FMT )
 	elif cTHours > l1Hours and cTHours <= l2Hours:
@@ -215,7 +221,12 @@ def getToday():
 	print( "Next High Tide in : " + str(highTimeDifference) )
 	print( "Next Low Tide in : " + str(lowTimeDifference) )
 
+	return tomorrowHigh , tomorrowLow
 
-getTomorrow()
 
-getToday()
+
+
+#a1 , b1 = getToday()
+
+#print(a1)
+#print(b1)

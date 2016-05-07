@@ -3,7 +3,16 @@ import sys
 import subprocess
 import time
 
+import grabToday
 
+def updateTide():
+	a1 , b1 = grabToday.getToday()
+	print(a1)
+	print(b1)
+
+
+
+'''
 try:
 	ser = serial.Serial( '/dev/ttyACM0' , 9600 )
 except:
@@ -32,3 +41,4 @@ while 1:
 	# if test passes , send a response
 	ser.write('1')
 	
+'''
